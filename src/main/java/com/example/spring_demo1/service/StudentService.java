@@ -21,6 +21,13 @@ public class StudentService {
     public void registerStudent(Student student){
         studentDAO.save(student);
     }
+    public void deleteStudent(int id) {
+        studentDAO.delete(id);
+    }
+
+    public void updateStudent(Student student) {
+        studentDAO.update(student);
+    }
 
     public List<Student> getAllStudents() {
         return studentDAO.getAll();

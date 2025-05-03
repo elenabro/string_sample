@@ -22,8 +22,18 @@ public class StudentController {
     }
 
     public void createStudent() {
-        Student s = new Student(0, "Tim", "Test", new Date(), "test123@email.com") ;
+        Student s = new Student(0, "Tim", "Test", new Date(), "test128@email.com") ;
         studentService.registerStudent(s);
+    }
+
+    public void deleteStudent(int id) {
+        studentService.deleteStudent(id);
+        System.out.println("Student with ID " + id + " deleted successfully.");
+    }
+
+    public void updateStudent(Student student) {
+        studentService.updateStudent(student);
+        System.out.println("Student with ID " + student.getId() + " updated successfully.");
     }
 public void showAllStudents() {
         List<Student> students = studentService.getAllStudents();

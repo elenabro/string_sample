@@ -33,6 +33,30 @@ public class StudentDAO {
 
     }
 
+    public void delete(int id) {
+        String sql = "DELETE FROM students WHERE id = ?";
+        try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void update(Student student) {
+        String sql = "UPDATE students SET first_name = ?, last_name = ?, birthdate = ?, email = ? WHERE id = ?";
+        try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, student.getFirst_name());
+            stmt.setString(2, student.getLast_name());
+            stmt.setDate(3, new java.sql.Date(student.getBirthdate().getTime()));
+            stmt.setString(4, student.getEmail());
+            stmt.setInt(5, student.getId());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public List<Student> getAll(){
         List<Student> students = new ArrayList<>();
         String sql = "SELECT * FROM students";
